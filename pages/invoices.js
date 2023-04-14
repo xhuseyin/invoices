@@ -1,43 +1,26 @@
-import Invoice from '../models/Invoice';
+import { useState, useEffect } from 'react';
 
-export default function Invoices({ invoices }) {
+function Invoices() {
+  const [invoices, setInvoices] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/invoices')
+      .then(response => response.json())
+      .then(data => setInvoices(data))
+      .catch(error => console.error(error));
+  }, []);
+
   return (
     <div>
-      <h1>Invoices</h1>
-      <ul>
-        {invoices.map((invoice) => (
-          <li key={invoice._id}>
-            <h2>Invoice #{invoice.invoiceNumber}</h2>
-            <p>Customer Name: {invoice.customerName}</p>
-            <p>Total: ${invoice.total.toFixed(2)}</p>
-          </li>
-        ))}
-      </ul>
+      {invoices.map(invoice => (
+        <div key={invoice._id}>
+          <h2>{invoice.customerName}</h2>
+          <p>{invoice.invoiceNumber}</p>
+          <p>{invoice.total}</p>
+        </div>
+      ))}
     </div>
   );
 }
 
-export async function getServerSideProps() {
-  try {
-    // Fetch invoice data from the Invoice API
-    const response = await fetch('http://localhost:3000/api/invoices');
-    const data = await response.json();
-
-    // Create an array of Invoice model instances from the data
-    const invoices = data.map((invoiceData) => new Invoice(invoiceData));
-
-    // Pass the invoices data to the Invoices component as props
-    return {
-      props: {
-        invoices,
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        invoices: [],
-      },
-    };
-  }
-}
+export default Invoices;
