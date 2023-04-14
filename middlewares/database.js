@@ -11,8 +11,9 @@ const database = async (req, res, next) => {
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false,
+      //useFindAndModify: false,
     });
+    console.error('connected to mondoDB!!!');
     return next();
   } catch (error) {
     console.error(error);
