@@ -56,4 +56,23 @@ handler.get(async (req, res) => {
   }
 });
 
+handler.post(async (req, res) => {
+  try {
+    const { customerName, invoiceNumber, items, total } = req.body;
+    const invoice = new Invoice({
+      customerName,
+      invoiceNumber,
+      items,
+      total,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+    await invoice.save();
+    res.json({ message: 'Invoice created successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 export default handler;
