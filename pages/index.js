@@ -173,6 +173,7 @@ const InvoicesPage = () => {
         <Th>Item Price</Th>
         <Th>Item Quantity</Th>
         <Th>Total</Th>
+        <Th>Created Date</Th>
       </Tr>
     </Thead>
     <Tbody>
@@ -184,6 +185,7 @@ const InvoicesPage = () => {
           <Td>{invoice.items?.[0]?.price}</Td>
           <Td>{invoice.items?.[0]?.quantity}</Td>
           <Td>{invoice.total}</Td>
+          <Td>{new Date(invoice.createdAt).toLocaleDateString('tr-TR')}</Td>
         </Tr>
       ))}
     </Tbody>
