@@ -10,7 +10,8 @@ import {
   Thead,
   Tr,
   Container,
-  TableContainer
+  TableContainer,
+  Flex
 } from "@chakra-ui/react";
 
 // dynamic import
@@ -99,12 +100,12 @@ const InvoicesPage = () => {
   }, []);
 
   return (
-<>
-<Container maxW="4xl">
-  <Text as="h3" fontSize="3xl" fontWeight="bold" mb="5">
+<Container maxW={{ base: "100%", sm: "640px", md: "768px", lg: "960px", xl: "1200px" }}>
+  <Text as="h3" fontSize="3xl" fontWeight="bold" mb="5" color="primary.700">
     Create New Invoice
   </Text>
   <Box as="form" onSubmit={handleSubmit}>
+  <Flex direction={{ base: "column", md: "row" }} justify="space-between" gap="2">
     <Box mb="4">
       <Text htmlFor="customerName" fontWeight="bold">
         Customer Name:
@@ -160,10 +161,13 @@ const InvoicesPage = () => {
         onChange={(event) => setItemQuantity(event.target.value)}
       />
     </Box>
+    </Flex>
+    <Box>
     <Button type="submit" color="white">
       Create Invoice
     </Button>
     {errorMessage && <Text color="red">{errorMessage}</Text>}
+    </Box>
   </Box>
   <Box>
   <TableContainer>
@@ -195,8 +199,7 @@ const InvoicesPage = () => {
   </Table>
   </TableContainer>
   </Box>
-  </Container>
-</>
+</Container>
 )
     }
     
