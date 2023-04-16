@@ -9,7 +9,8 @@ import {
   Th,
   Thead,
   Tr,
-  Container
+  Container,
+  TableContainer
 } from "@chakra-ui/react";
 
 // dynamic import
@@ -165,6 +166,7 @@ const InvoicesPage = () => {
     {errorMessage && <Text color="red">{errorMessage}</Text>}
   </Box>
   <Box>
+  <TableContainer>
   <Table variant="simple" mt="5">
     <Thead>
       <Tr>
@@ -191,6 +193,7 @@ const InvoicesPage = () => {
       ))}
     </Tbody>
   </Table>
+  </TableContainer>
   </Box>
   </Container>
 </>
