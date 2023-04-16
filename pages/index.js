@@ -99,7 +99,7 @@ const InvoicesPage = () => {
 
   return (
 <>
-<Container>
+<Container maxW="4xl">
   <Text as="h3" fontSize="3xl" fontWeight="bold" mb="5">
     Create New Invoice
   </Text>
@@ -164,6 +164,7 @@ const InvoicesPage = () => {
     </Button>
     {errorMessage && <Text color="red">{errorMessage}</Text>}
   </Box>
+  <Box>
   <Table variant="simple" mt="5">
     <Thead>
       <Tr>
@@ -190,6 +191,7 @@ const InvoicesPage = () => {
       ))}
     </Tbody>
   </Table>
+  </Box>
   </Container>
 </>
 )

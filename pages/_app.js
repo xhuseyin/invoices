@@ -20,7 +20,17 @@ const colors = {
   },
 }
 
-const theme = extendTheme({ fonts, colors })
+const breakpoints = {
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  "2xl": "96em",
+  "3xl": "120em",
+  "4xl": "160em",
+}
+
+const theme = extendTheme({ fonts, colors, breakpoints })
 
 export default function App({ Component, pageProps }) {
   return (
