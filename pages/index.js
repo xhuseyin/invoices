@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic'
 import {
   Box,
-  Button,
-  Input,
   Table,
   Tbody,
   Td,
@@ -12,6 +11,10 @@ import {
   Tr,
   Container
 } from "@chakra-ui/react";
+
+// dynamic import
+const Button = dynamic(() => import('cakmak-ui').then(mod => mod.Button), { ssr: false })
+const Input = dynamic(() => import('cakmak-ui').then(mod => mod.Input), { ssr: false })
 
 const InvoicesPage = () => {
   const [invoices, setInvoices] = useState([]);
@@ -156,7 +159,7 @@ const InvoicesPage = () => {
         onChange={(event) => setItemQuantity(event.target.value)}
       />
     </Box>
-    <Button type="submit" colorScheme="green" mb="5">
+    <Button type="submit" color="white">
       Create Invoice
     </Button>
     {errorMessage && <Text color="red">{errorMessage}</Text>}
