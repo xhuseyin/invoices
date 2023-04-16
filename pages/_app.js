@@ -7,11 +7,6 @@ const roboto = Roboto({
   subsets: ['latin'],
 })
 
-const fonts = {
-  body: 'Roboto, sans-serif',
-  heading: 'Roboto, sans-serif',
-}
-
 const colors = {
   primary: {
     900: '#999',
@@ -30,12 +25,14 @@ const breakpoints = {
   "4xl": "160em",
 }
 
-const theme = extendTheme({ fonts, colors, breakpoints })
+const theme = extendTheme({ colors, breakpoints })
 
 export default function App({ Component, pageProps }) {
   return (
+    <main className={roboto.className}>
     <ChakraProvider theme={theme}>
       <Component {...pageProps} />
     </ChakraProvider>
+    </main>
   )
 }
